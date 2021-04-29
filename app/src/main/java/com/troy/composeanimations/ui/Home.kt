@@ -50,12 +50,14 @@ fun HomeScreen(nav: Nav, onNavigate: (Nav) -> Unit) {
                 Modifier
                     .size(100.dp)
             )
-            TextButton(
-                onClick = { onNavigate(Nav.VALUE) },
-                modifier = Modifier.padding(top = 8.dp),
-                colors = ButtonDefaults.textButtonColors(backgroundColor = MaterialTheme.colors.surface)
-            ) {
-                Text("Animate Value")
+            Nav.values().filterNot { it == Nav.HOME}.forEach { destination ->
+                TextButton(
+                    onClick = { onNavigate(destination) },
+                    modifier = Modifier.padding(top = 8.dp),
+                    colors = ButtonDefaults.textButtonColors(backgroundColor = MaterialTheme.colors.surface)
+                ) {
+                    Text(destination.title)
+                }
             }
         }
     }
