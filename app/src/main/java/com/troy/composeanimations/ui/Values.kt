@@ -4,7 +4,10 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -36,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.troy.composeanimations.AppBar
@@ -64,13 +68,17 @@ fun ValueScreen(nav: Nav, onBack: () -> Unit) {
     }
 }
 
+// These are used to slow the animations a bit to make them more noticeable
+private val colorSpring = spring<Color>(stiffness = Spring.StiffnessLow)
+private val dpTween = tween<Dp>(durationMillis = 750)
+
 /**
  * Render a colored button which will animate to a random color when clicked
  */
 @Composable
 private fun ColorButton() {
     var target by remember { mutableStateOf(ColorTarget.BLACK) }
-    val color by animateColorAsState(targetValue = target.color)
+    val color by animateColorAsState(target.color, colorSpring)
     TextButton(onClick = { target = nextColor(target) }, colors = ButtonDefaults.textButtonColors(contentColor = target.contrast, backgroundColor = color)) {
         Text(target.title, fontSize = 20.sp)
     }
@@ -136,8 +144,8 @@ private fun ToolItem(tool: Tool, selected: Boolean, modifier: Modifier = Modifie
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             val color = if (selected) MaterialTheme.colors.primary else Color.Gray
             val size = if (selected) 30.dp else 24.dp
-            val animatedColor by animateColorAsState(color)
-            val animatedSize by animateDpAsState(size)
+            val animatedColor by animateColorAsState(color, colorSpring)
+            val animatedSize by animateDpAsState(size, dpTween)
             Icon(tool.imageVector, tool.title, Modifier.size(animatedSize), tint = animatedColor)
             AnimatedVisibility(visible = selected) {
                 Text(tool.title, color = animatedColor, style = MaterialTheme.typography.caption)
