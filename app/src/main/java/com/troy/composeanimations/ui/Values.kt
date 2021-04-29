@@ -27,7 +27,10 @@ import com.troy.composeanimations.Nav
 fun ValueScreen(nav: Nav, onBack: () -> Unit) {
     BackHandler(onBack = onBack)
     Scaffold(topBar = { AppBar(nav, onBack) }) {
-        Column(Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             ColorButton()
         }
     }

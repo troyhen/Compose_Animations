@@ -77,7 +77,8 @@ fun BouncingBox(size: Dp, color: Color) {
                 .offset(horizontal.value.dp, vertical.value.dp)
                 .rotate(rotation.value)
                 .size(size)
-                .background(color), contentAlignment = Alignment.Center) {
+                .background(color), contentAlignment = Alignment.Center
+        ) {
             Text("Bouncing Box", fontSize = 20.sp, textAlign = TextAlign.Center)
         }
     }

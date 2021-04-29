@@ -51,7 +51,7 @@ fun HomeScreen(nav: Nav, onNavigate: (Nav) -> Unit) {
                 Modifier
                     .size(100.dp)
             )
-            Nav.values().filterNot { it == Nav.HOME}.forEach { destination ->
+            Nav.values().filterNot { it == Nav.HOME }.forEach { destination ->
                 TextButton(
                     onClick = { onNavigate(destination) },
                     modifier = Modifier.padding(top = 8.dp),
