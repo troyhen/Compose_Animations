@@ -32,7 +32,7 @@ import com.troy.composeanimations.Nav
 fun AnimatableScreen(nav: Nav, onBack: () -> Unit) {
     BackHandler(onBack = onBack)
     Scaffold(topBar = { AppBar(nav, onBack) }) {
-        MovingBox(100.dp, Color.Cyan)
+        BouncingBox(100.dp, Color.Cyan)
     }
 }
 
@@ -40,7 +40,7 @@ fun AnimatableScreen(nav: Nav, onBack: () -> Unit) {
  * Render an animated box which rotates and bounces off the device edges.
  */
 @Composable
-fun MovingBox(size: Dp, color: Color) {
+fun BouncingBox(size: Dp, color: Color) {
     val horizontal = remember { Animatable(initialValue = 0f) }
     val vertical = remember { Animatable(initialValue = 0f) }
     val rotation = remember { Animatable(initialValue = 0f) }
@@ -78,7 +78,7 @@ fun MovingBox(size: Dp, color: Color) {
                 .rotate(rotation.value)
                 .size(size)
                 .background(color), contentAlignment = Alignment.Center) {
-            Text("Moving Box", fontSize = 24.sp, textAlign = TextAlign.Center)
+            Text("Bouncing Box", fontSize = 20.sp, textAlign = TextAlign.Center)
         }
     }
 }
