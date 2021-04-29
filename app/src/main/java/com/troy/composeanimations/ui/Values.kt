@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.troy.composeanimations.AppBar
 import com.troy.composeanimations.Nav
 
+
 @Composable
 fun ValueScreen(nav: Nav, onBack: () -> Unit) {
     BackHandler(onBack = onBack)

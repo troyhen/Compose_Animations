@@ -3,7 +3,6 @@ package com.troy.composeanimations
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -39,7 +38,6 @@ enum class Nav(val title: String) {
     ANIMATABLE("Animatable"),
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun Screen(nav: Nav, onNavigate: (Nav) -> Unit) {
     val onBack: () -> Unit = { onNavigate(Nav.HOME) }
