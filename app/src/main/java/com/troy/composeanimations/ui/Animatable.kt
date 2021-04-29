@@ -12,14 +12,18 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.troy.composeanimations.AppBar
 import com.troy.composeanimations.Nav
 
@@ -32,6 +36,9 @@ fun AnimatableScreen(nav: Nav, onBack: () -> Unit) {
     }
 }
 
+/**
+ * Render an animated box which rotates and bounces off the device edges.
+ */
 @Composable
 fun MovingBox(size: Dp, color: Color) {
     val horizontal = remember { Animatable(initialValue = 0f) }
@@ -70,6 +77,8 @@ fun MovingBox(size: Dp, color: Color) {
                 .offset(horizontal.value.dp, vertical.value.dp)
                 .rotate(rotation.value)
                 .size(size)
-                .background(color))
+                .background(color), contentAlignment = Alignment.Center) {
+            Text("Moving Box", fontSize = 24.sp, textAlign = TextAlign.Center)
+        }
     }
 }
