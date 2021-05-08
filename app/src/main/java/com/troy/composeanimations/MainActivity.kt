@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import com.troy.composeanimations.ui.AnimatableScreen
 import com.troy.composeanimations.ui.HomeScreen
 import com.troy.composeanimations.ui.ValueScreen
+import com.troy.composeanimations.ui.VisibilityScreen
 import com.troy.composeanimations.ui.theme.AppTheme
 
 
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
 
 enum class Nav(val title: String) {
     HOME("Compose Animations"),
+    VISIBILITY("Animate Visibility"),
     VALUE("Animate Values"),
     ANIMATABLE("Animatable"),
 }
@@ -45,6 +47,7 @@ private fun Screen(nav: Nav, onNavigate: (Nav) -> Unit) {
         Surface(color = MaterialTheme.colors.background) {
             when (nav) {
                 Nav.HOME -> HomeScreen(nav, onNavigate)
+                Nav.VISIBILITY -> VisibilityScreen(nav, onBack)
                 Nav.VALUE -> ValueScreen(nav, onBack)
                 Nav.ANIMATABLE -> AnimatableScreen(nav, onBack)
             }
