@@ -17,7 +17,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.troy.composeanimations.ui.AnimatableScreen
+import com.troy.composeanimations.ui.DraggingScreen
 import com.troy.composeanimations.ui.HomeScreen
+import com.troy.composeanimations.ui.NavigationScreen
+import com.troy.composeanimations.ui.SwipingScreen
 import com.troy.composeanimations.ui.ValueScreen
 import com.troy.composeanimations.ui.VisibilityScreen
 import com.troy.composeanimations.ui.theme.AppTheme
@@ -38,6 +41,9 @@ enum class Nav(val title: String) {
     VISIBILITY("Animate Visibility"),
     VALUE("Animate Values"),
     ANIMATABLE("Animatable"),
+    SWIPABLE_NAV("Animate Navigation"),
+    DRAGGING("Dragging"),
+    SWIPABLE("Swipable"),
 }
 
 @Composable
@@ -50,6 +56,9 @@ private fun Screen(nav: Nav, onNavigate: (Nav) -> Unit) {
                 Nav.VISIBILITY -> VisibilityScreen(nav, onBack)
                 Nav.VALUE -> ValueScreen(nav, onBack)
                 Nav.ANIMATABLE -> AnimatableScreen(nav, onBack)
+                Nav.SWIPABLE_NAV -> NavigationScreen(nav, onBack)
+                Nav.DRAGGING -> DraggingScreen(nav, onBack)
+                Nav.SWIPABLE -> SwipingScreen(nav, onBack)
             }
         }
     }
