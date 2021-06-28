@@ -108,7 +108,7 @@ private fun nextColor(previous: ColorTarget): ColorTarget {
     return next
 }
 
-private enum class Tool(val title: String, val imageVector: ImageVector) {
+enum class Tool(val title: String, val imageVector: ImageVector) {
     HOME("Home", Icons.Default.Home),
     SEARCH("Search", Icons.Default.Search),
     CART("Cart", Icons.Default.ShoppingCart),
